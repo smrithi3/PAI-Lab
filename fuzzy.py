@@ -1,11 +1,9 @@
 def fuzzy_union(set1, set2):
-    union_set = {}
-    for element in set1:
-        union_set[element] = max(set1[element], set2.get(element, 0))
+    union_set = set1.copy()
     for element in set2:
-        if element not in union_set:
-            union_set[element] = set2[element]
+        union_set[element] = max(union_set.get(element, 0), set2[element])
     return union_set
+
 
 def fuzzy_intersection(set1, set2):
     intersection_set = {}
@@ -15,10 +13,8 @@ def fuzzy_intersection(set1, set2):
     return intersection_set
 
 def display_fuzzy_set(fuzzy_set):
-    print("{", end="")
-    for element, membership in fuzzy_set.items():
-        print(f"{element}: {membership}", end=", ")
-    print("}")
+    print(", ".join([f"{element}: {membership}" for element, membership in fuzzy_set.items()]))
+
 
 # Example fuzzy sets
 set1 = {'a': 0.8, 'b': 0.6, 'c': 0.4, 'd': 0.2, 'e': 0.1}
