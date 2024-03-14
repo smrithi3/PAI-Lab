@@ -11,7 +11,7 @@ def print_board():
 
 def print_turn(player):
     print(player + "'s turn")
-    position = input("Enter position from 1-9: ")
+    position = input("Enter position from 1-9: ") 
     while position not in ["1", "2", "3", "4", "5", "6", "7", "8", "9"]:
         print("Invalid choice (1-9)")
         position = input("Enter position from 1-9: ")
@@ -41,18 +41,11 @@ def check_game_over():
 def play_game():
     print_board()
     current_player = "X"
-    game_over = False
-    while not game_over:
+    while True:
         print_turn(current_player)
-        game_result = check_game_over()
-        if game_result == "win":
-            print(current_player + " wins!")
-            game_over = True
-        elif game_result == "tie":
-            print("It's a tie!")
-            game_over = True
-        else:
-            current_player = "O" if current_player == "X" else "X"
+        if check_game_over() in ["win", "tie"]:
+            break
+        current_player = "O" if current_player == "X" else "X"
 
 
 play_game()
